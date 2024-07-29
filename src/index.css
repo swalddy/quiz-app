@@ -1,0 +1,10 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+
+body{
+  height: 100vh;
+  background-color: #f0f0f0;
+  font-family: 'work sans', sans-serif;
+}
