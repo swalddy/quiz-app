@@ -59,3 +59,8 @@
     background: #ffebeb;
     border-color: #f74a4a;
 }
+
+.container span{
+    font-size: 20px;
+    font-weight: 500;
+}
