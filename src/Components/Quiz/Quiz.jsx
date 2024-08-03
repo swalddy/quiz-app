@@ -7,8 +7,10 @@ const Quiz = () => {
     const [index, setIndex] = useState(0);
     const [score, setScore] = useState(0);
     const [result, setResult] = useState(false);
-    const [timer, setTimer] = useState("02:00");
-    const intervalRef = useRef(null);
+    const [timer, setTimer] = useState();
+    const [totalCorrect, setTotalCorrect] = useState(0);
+    const [totalWrong, setTotalWrong] = useState(0);
+    const intervalRef = useRef(null);   
 
     const Option1 = useRef(null);
     const Option2 = useRef(null);
@@ -49,7 +51,7 @@ const Quiz = () => {
                 });
                 
                 setQuestions(formattedData);
-                startTimer(); // Start the timer when questions are loaded
+                startTimer(); 
             } catch (error) {
                 console.error("Error fetching data: ", error);
             }
@@ -58,12 +60,12 @@ const Quiz = () => {
         fetchData();
 
         return () => {
-            clearInterval(intervalRef.current); // Clear interval on component unmount
+            clearInterval(intervalRef.current); 
         };
     }, []);
 
     const startTimer = () => {
-        const countDownTime = Date.now() + 120000;
+        const countDownTime = Date.now() + 12000;
         intervalRef.current = setInterval(() => {
             const now = new Date().getTime();
             const distance = countDownTime - now;
@@ -77,7 +79,7 @@ const Quiz = () => {
             if (distance < 0) {
                 clearInterval(intervalRef.current);
                 setResult(true);
-                setTimer("Time's up!");
+                setTimer("Waktu Habis!");
             } else {
                 setTimer(`${formattedMinutes}:${formattedSeconds}`);
             }
@@ -88,13 +90,18 @@ const Quiz = () => {
         const correct = questions[index].ans === ans;
         setScore((prevScore) => correct ? prevScore + 1 : prevScore);
 
+        if (correct) {
+            setTotalCorrect((prevCorrect) => prevCorrect + 1);
+        } else {
+            setTotalWrong((prevWrong) => prevWrong + 1);
+        }
+
         if (index === questions.length - 1) {
             setResult(true);
         } else {
             setIndex((prevIndex) => prevIndex + 1);
         }
 
-        // Clear the lock and styles for the next question
         setTimeout(() => {
             option_array.forEach((option) => {
                 if (option.current) {
@@ -137,7 +144,10 @@ const Quiz = () => {
             )}
             {result && (
                 <>
-                    <h2>Score {score} out of {questions.length}</h2>
+                    <h2>Nilai anda {score}</h2>
+                    <h2>Total Benar: {totalCorrect}</h2>
+                    <h2>Total Salah: {totalWrong}</h2>
+                    <h2>Total Soal Terjawab: {totalCorrect + totalWrong}</h2>
                     <button onClick={reset}>Reset</button>
                 </>
             )}
