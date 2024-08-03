@@ -1,7 +1,7 @@
 # Quiz App
 
 ## Overview
-Created usign React.js and Vite. Questions are sourced from [opentdb.com](https://opentdb.com).
+Created using React.js and Vite. Questions are sourced from [opentdb.com](https://opentdb.com).
 
 ## Features
 1. **Login:**
