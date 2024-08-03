@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Quiz App
 
 ## Overview
