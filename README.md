@@ -31,8 +31,3 @@ Created usign React.js and Vite. Questions are sourced from [opentdb.com](https:
 3. **Start development server:**
    ```bash
    npm run dev
-=======
-# Web Quiz App using React
-
-This web quiz was created using React.JS and Vite.
->>>>>>> deb36df8cf09a501ffc8fbb3b853e843176ea043
